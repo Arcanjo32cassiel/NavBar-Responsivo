@@ -33,3 +33,35 @@ function LinkAtivo(tag){
     }
        tag.style.background = "#2F4F4F";
     }
+
+//SCROLL SUAVE
+
+    //IDENTIFICAR O CLIQUE NO MENU
+    const menuItens =document.querySelectorAll('.menu_intens a[href^="#"]');
+
+
+    //VERIFICAR O INTEM  QUE FOI CLICADO E FAZER  REFERENCIA COM O ALVO
+    menuItens.forEach(item =>{
+    item.addEventListener('click', scrolltoidonclick);
+});
+
+ //função pra fazer referencia  entre o href e o intem
+    function getScrollTopByHref(element){
+    const id = element.getAttribute('href');
+    return document.querySelector(id).offsetTop
+}
+    //função para o momento que é efetuado o click 
+    function scrolltoidonclick(event){
+    event.preventDefault();
+    const to = getScrollTopByHref(event.target) - 80;
+    scrolltoposition(to);
+}
+
+   // função para fazer o scroll suave
+   function scrolltoposition(to){
+    window.scroll({
+        top:to - 80,
+    });
+}
+   
+
